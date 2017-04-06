@@ -12,23 +12,24 @@
 
     <TextView
         android:id="@+id/loc_name"
-        android:layout_width="148dp"
-        android:layout_height="34dp"
-        android:layout_marginRight="7dp"
+        android:layout_width="157dp"
+        android:layout_height="33dp"
+        android:layout_marginRight="3dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="16dp"
         android:text="TEST"
+        android:textAlignment="textEnd"
         android:textSize="14sp"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/loc_coord"
-        android:layout_width="264dp"
-        android:layout_height="32dp"
-        android:layout_marginLeft="0dp"
+        android:layout_width="214dp"
+        android:layout_height="34dp"
+        android:layout_marginLeft="7dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:text="TEST"
         android:textSize="22sp"
         app:layout_constraintLeft_toLeftOf="parent"

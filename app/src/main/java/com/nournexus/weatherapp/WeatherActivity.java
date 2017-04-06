@@ -74,8 +74,8 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
     private SharedPreferences preferences = null;
 
     ListView listview;
-    static String[] name = {"London","Ankara","Ontario"};
-    static String[] loc = {"51.502242, -0.141465","38.692918, 35.437894","51.356492, -86.564511"};
+    static String[] name = {"London, UK","Ankara, Turkey","Ontario, Canada", "Brasilia, Brazil", "Buenos Aires, Argentina", "Santiago, Chile"};
+    static String[] loc = {"51.502242, -0.141465","38.692918, 35.437894","51.356492, -86.564511","-15.804979, -47.877438","-34.620740, -58.409295","-33.488509, -70.577675"};
 
 
     @Override
