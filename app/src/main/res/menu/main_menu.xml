@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:nourweather="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/currentLocation"
+        android:icon="@drawable/icon_location"
+        android:title="@string/update_location"
+        nourweather:showAsAction="ifRoom|withText" />
+    <item
+        android:id="@+id/settings"
+        android:title="@string/settings"/>
+</menu>
