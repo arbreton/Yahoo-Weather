@@ -8,8 +8,6 @@ public class WeatherClass {
     private String loc_name;
     private String loc_coord;
 
-
-
     public WeatherClass(String loc_name, String loc_coord) {
         super();
         this.setLoc_name(loc_name);

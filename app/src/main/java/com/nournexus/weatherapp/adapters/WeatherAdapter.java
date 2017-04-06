@@ -1,10 +1,13 @@
 package com.nournexus.weatherapp.adapters;
 
+/**
+ * Created by Andre on 4/5/2017.
+ */
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -21,7 +24,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -30,18 +32,9 @@ import com.nournexus.weatherapp.WeatherActivity;
 import com.nournexus.weatherapp.classes.WeatherClass;
 import com.nournexus.weatherapp.listeners.WeatherServiceListener;
 import com.nournexus.weatherapp.main.YahooWeatherService;
-
 import static android.content.Context.LAYOUT_INFLATER_SERVICE;
 
-/**
- * Created by Andre on 4/5/2017.
- */
-
 public class WeatherAdapter extends ArrayAdapter {
-
-
-
-
     public List<WeatherClass> list= new ArrayList();
 
     public WeatherAdapter(Context context, int resource) {
@@ -87,40 +80,21 @@ public class WeatherAdapter extends ArrayAdapter {
         {
             holder = (ImgHolder) row.getTag();
         }
-
-
         final WeatherClass FR = (WeatherClass) getItem(position);
         holder.NAME.setText(FR.getLoc_name());
         holder.NAME.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-
-
-                String[] latlong =  holder.NAME.getText().toString().split(",");
-                double latitude = Double.parseDouble(latlong[0]);
-                double longitude = Double.parseDouble(latlong[1]);
-                WeatherActivity.updateMaplocation(latitude,longitude, holder.LOC.getText().toString());
                 YahooWeatherService.refreshWeather(holder.LOC.getText().toString());
             }
         });
-
         holder.LOC.setText(FR.getLoc_qty());
         holder.LOC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View view) {
-
-
-                String[] latlong =  holder.NAME.getText().toString().split(",");
-                double latitude = Double.parseDouble(latlong[0]);
-                double longitude = Double.parseDouble(latlong[1]);
-                WeatherActivity.updateMaplocation(latitude,longitude, holder.LOC.getText().toString());
                 YahooWeatherService.refreshWeather(holder.LOC.getText().toString());
             }
         });
-
-
         return row;
     }
-
-
     }

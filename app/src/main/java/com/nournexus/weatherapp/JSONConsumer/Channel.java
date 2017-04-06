@@ -12,15 +12,12 @@ public class Channel implements JSONPopulator {
     private Units units;
     private Item item;
     private String location;
-
     public Item getItem() {
         return item;
     }
-
     public String getLocation() {
         return location;
     }
-
     public Units getUnits() {
         return units;
     }
@@ -40,7 +37,6 @@ public class Channel implements JSONPopulator {
 
     @Override
     public JSONObject toJSON() {
-
         JSONObject data = new JSONObject();
         try {
             data.put("units", units.toJSON());
@@ -49,7 +45,6 @@ public class Channel implements JSONPopulator {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return data;
     }
 

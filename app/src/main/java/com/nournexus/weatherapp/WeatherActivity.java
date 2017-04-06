@@ -23,6 +23,8 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -44,6 +46,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.nournexus.weatherapp.JSONConsumer.Channel;
 import com.nournexus.weatherapp.JSONConsumer.Condition;
+import com.nournexus.weatherapp.JSONConsumer.Item;
 import com.nournexus.weatherapp.JSONConsumer.LocationResult;
 import com.nournexus.weatherapp.JSONConsumer.Units;
 import com.nournexus.weatherapp.adapters.WeatherAdapter;
@@ -124,9 +127,7 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
     }
 
-    public static void updateWeatherlocation(double latitude, double longitude) {
 
-    }
 
 
     @Override
@@ -140,7 +141,6 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
         String location = null;
         if (preferences.getBoolean(getString(R.string.pref_geolocation_enabled), true)) {
             String locationCache = preferences.getString(getString(R.string.pref_cached_location), null);
-
             if (locationCache == null) {
                 getWeatherFromCurrentLocation();
             } else {
@@ -159,7 +159,6 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
             ActivityCompat.requestPermissions(this, new String[]{
                     Manifest.permission.ACCESS_FINE_LOCATION,
             }, GET_WEATHER_FROM_CURRENT_LOCATION);
-
             return;
         }
 
@@ -240,12 +239,12 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
         temperatureTextView.setText(getString(R.string.temperature_output, condition.getTemp(), units.getTemp()));
         conditionTextView.setText(condition.getDescription());
         locationTextView.setText(channel.getLocation());
+        updateMaplocation(Item.getLat(),Item.getLongitude(),channel.getLocation());
 
         for (int day = 0; day < forecast.length; day++) {
             if (day >= 5) {
                 break;
             }
-
             Condition currentCondition = forecast[day];
             int viewId = getResources().getIdentifier("forecast_" + day, "id", getPackageName());
             WeatherConditionFragment fragment = (WeatherConditionFragment) getSupportFragmentManager().findFragmentById(viewId);
@@ -253,7 +252,6 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
                 fragment.loadForecast(currentCondition, channel.getUnits());
             }
         }
-
         cacheService.save(channel);
     }
 
@@ -268,7 +266,6 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
             weatherServicesHasFailed = true;
             // OPTIONAL: let the user know an error has occurred then fallback to the cached data
             Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
-
             cacheService.load(this);
         }
     }
@@ -277,7 +274,6 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
     public void geocodeSuccess(LocationResult location) {
         // completed geocoding successfully
         weatherService.refreshWeather(location.getAddress());
-
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString(getString(R.string.pref_cached_location), location.getAddress());
         editor.apply();
@@ -312,12 +308,9 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng tijuana = new LatLng(32.51, -117.01);
-        mMap.addMarker(new MarkerOptions().position(tijuana).title("Marker in Tijuana"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(tijuana));
     }
+
+
 
 
 }

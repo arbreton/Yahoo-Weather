@@ -22,13 +22,11 @@ public class Units implements JSONPopulator {
     @Override
     public JSONObject toJSON() {
         JSONObject data = new JSONObject();
-
         try {
             data.put("temperature", temperature);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
         return data;
     }
 }
