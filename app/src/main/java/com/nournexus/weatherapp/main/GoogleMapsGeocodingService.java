@@ -71,7 +71,6 @@ public class GoogleMapsGeocodingService {
         }.execute(location);
     }
 
-    // OPTIONAL: Your Google Maps API KEY
     private static final String API_KEY = "AIzaSyC8oEE0opfo394Zb1cVB7N9CaDlEuzXrYc";
 
     private class ReverseGeolocationException extends Exception {

@@ -72,7 +72,7 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
     private WeatherCacheService cacheService;
     private ProgressDialog loadingDialog;
 
-    // weather service fail flag
+    // weather service fail
     private boolean weatherServicesHasFailed = false;
     private SharedPreferences preferences = null;
 
@@ -95,8 +95,6 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
         listview = (ListView) findViewById(R.id.main_list_view);
         WeatherAdapter adapter = new WeatherAdapter(getApplicationContext(),R.layout.row_layout);
         listview.setAdapter(adapter);
-        // listview.setLayoutManager(layoutManager);
-        //mAdapter.refreshEvents(newListOfEvents);
         int i = 0;
         for(String Name : name )
         {
@@ -162,7 +160,7 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
             return;
         }
 
-        // system's LocationManager
+        // LocationManager
         final LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
         boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
@@ -264,7 +262,6 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
         } else {
             // error doing reverse geocoding, load weather data from cache
             weatherServicesHasFailed = true;
-            // OPTIONAL: let the user know an error has occurred then fallback to the cached data
             Toast.makeText(this, exception.getMessage(), Toast.LENGTH_SHORT).show();
             cacheService.load(this);
         }
@@ -292,17 +289,14 @@ public class WeatherActivity extends AppCompatActivity implements OnMapReadyCall
 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
-        // OPTIONAL: implement your custom logic here
     }
 
     @Override
     public void onProviderEnabled(String s) {
-        // OPTIONAL: implement your custom logic here
     }
 
     @Override
     public void onProviderDisabled(String s) {
-        // OPTIONAL: implement your custom logic here
     }
 
     @Override
