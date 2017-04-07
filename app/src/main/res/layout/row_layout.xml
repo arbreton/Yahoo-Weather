@@ -12,11 +12,11 @@
 
     <TextView
         android:id="@+id/loc_name"
-        android:layout_width="157dp"
-        android:layout_height="33dp"
+        android:layout_width="156dp"
+        android:layout_height="34dp"
         android:layout_marginRight="6dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="14dp"
         android:text="TEST"
         android:textAlignment="textEnd"
         android:textColor="@color/light_text"
@@ -30,7 +30,7 @@
         android:layout_height="34dp"
         android:layout_marginLeft="7dp"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="10dp"
         android:text="TEST"
         android:textColor="@color/light_text"
         android:textSize="22sp"
